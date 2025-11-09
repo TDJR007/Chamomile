@@ -1,6 +1,7 @@
 // src/db/database.ts
 import Database from 'better-sqlite3';
 import path from 'path';
+import fs from 'fs';
 import { User, Task, TaskStatus } from '../types';
 import dotenv from 'dotenv';
 
@@ -8,6 +9,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const dbPath = process.env.DB_FILE || './data/chamomile.db';
+
+// Ensure data directory exists (important for Railway/production)
+const dbDir = path.dirname(dbPath);
+if (!fs.existsSync(dbDir)) {
+  fs.mkdirSync(dbDir, { recursive: true });
+  console.log(`📁 Created data directory: ${dbDir}`);
+}
+
 const db = new Database(dbPath);
 
 // Enable foreign keys (CRITICAL for CASCADE deletion)
