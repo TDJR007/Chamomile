@@ -18,10 +18,11 @@ export function createApp(): Application {
   // ========== MIDDLEWARE ==========
   
   // Enable CORS for frontend requests
+  // In production, frontend is served from same origin (no CORS issues)
   app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
-      ? false // In production, configure specific origins
-      : '*',  // In development, allow all origins
+      ? true  // Reflect origin (same-origin allowed)
+      : '*',  // Development: allow all origins for testing
     credentials: true,
   }));
 

@@ -7,7 +7,10 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "db:init": "tsx src/db/schemaInit.ts"
+    "db:init": "tsx src/db/schemaInit.ts",
+    "db:reset": "rm -f data/chamomile.db && npm run db:init",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",

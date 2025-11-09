@@ -31,11 +31,11 @@ export const loginRateLimiter = rateLimit({
 
 /**
  * General API rate limiter for protected routes
- * Max 150 requests per IP per 15 minutes (generous for normal use)
+ * Max 100 requests per IP per 15 minutes (generous for normal use)
  */
 export const apiRateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 150,
+  max: 100,
   message: {
     error: 'Too many requests. Please slow down.',
   },
