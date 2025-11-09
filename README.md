@@ -2,9 +2,9 @@
 
 A step up on my previous kanban board project with user authentication, persistent database and type safety. Built with TypeScript, Express and SQLite.
 
-![Chamomile Login](outputs/login-screen.png)
+![Chamomile Login](outputs/login-screen.jpeg)
 
-![Chamomile App](outputs/main-page.png)
+![Chamomile App](outputs/main-page.jpeg)
 
 ## ✨ Features
 
