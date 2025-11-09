@@ -39,7 +39,7 @@ A step up on my previous kanban board project with user authentication, persiste
 
 1. **Clone the repository**
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/TDJR007/Chamomile.git
 cd chamomile
 ```
 
@@ -223,6 +223,6 @@ MIT License - feel free to use this for personal or commercial projects!
 
 ## 🙏 Acknowledgments
 
-Built with patience, TypeScript, and way too much coffee ☕
+Built with Claude, TypeScript, and way too much coffee ☕
 
 ---
