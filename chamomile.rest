@@ -1,0 +1,88 @@
+### Variables
+@baseUrl = http://localhost:3000/api
+@token = YOUR_TOKEN_HERE
+
+### Health Check
+GET http://localhost:3000/health
+
+### ========== AUTH TESTS ==========
+
+### 1. Register new user
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123",
+  "timestamp": 1762654693181
+}
+
+### 2. Register with honeypot (should fail)
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "bot@example.com",
+  "password": "password123",
+  "nickname": "I am a bot",
+  "timestamp": 1699500000000
+}
+
+### 3. Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+### ========== TODO TESTS (UPDATE TOKEN FIRST) ==========
+
+### 4. Get all tasks (requires auth)
+GET {{baseUrl}}/todos
+Authorization: Bearer {{token}}
+
+### 5. Create task
+POST {{baseUrl}}/todos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Build Chamomile backend",
+  "description": "TypeScript + Express + SQLite"
+}
+
+### 6. Create another task
+POST {{baseUrl}}/todos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Connect frontend to backend"
+}
+
+### 7. Update task status (replace :id with actual task ID)
+PUT {{baseUrl}}/todos/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "status": "doing"
+}
+
+### 8. Update task title
+PUT {{baseUrl}}/todos/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Build Chamomile backend ✅"
+}
+
+### 9. Delete task (replace :id with actual task ID)
+DELETE {{baseUrl}}/todos/2
+Authorization: Bearer {{token}}
+
+### 10. Test unauthorized access (should fail)
+GET {{baseUrl}}/todos

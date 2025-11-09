@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Chamomile</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍵️</text></svg>" />
+        <style>
+            /* Logout button styling */
+            .logout-container {
+                position: fixed;
+                top: 1rem;
+                right: 1rem;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .user-email {
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 0.9rem;
+                background: rgba(30, 30, 30, 0.8);
+                padding: 0.5rem 1rem;
+                border-radius: 6px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .logout-btn {
+                padding: 0.5rem 1rem;
+                border-radius: 6px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                background: rgba(220, 38, 38, 0.2);
+                color: #fca5a5;
+                font-weight: 600;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .logout-btn:hover {
+                background: rgba(220, 38, 38, 0.3);
+                border-color: rgba(220, 38, 38, 0.5);
+            }
+
+            /* Loading overlay */
+            .loading-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                color: white;
+                font-size: 1.2rem;
+            }
+
+            .loading-overlay.hidden {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Loading Overlay -->
+        <div id="loading" class="loading-overlay">
+            <div>Loading tasks...</div>
+        </div>
+
+        <!-- Star Background Container -->
+        <div id="star-background" class="star-background"></div>
+
+        <!-- Logout Button -->
+        <div class="logout-container">
+            <span class="user-email" id="user-email"></span>
+            <button class="logout-btn" id="logout-btn">Logout</button>
+        </div>
+
+        <!-- Main Board Content -->
+        <div class="board">
+            <div class="lanes">
+                <div class="swim-lane" id="todo-lane">
+                    <div class="lane-header">
+                        <h3>TODO</h3>
+                        <form id="todo-form">
+                            <input type="text" id="todo-input" placeholder="Add a task" required />
+                            <button type="submit">ADD</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="swim-lane" id="doing-lane">
+                    <h3>DOING</h3>
+                </div>
+                <div class="swim-lane" id="done-lane">
+                    <h3>DONE</h3>
+                </div>
+            </div>
+        </div>
+
+        <script src="api.js"></script>
+        <script src="storage.js"></script>
+        <script src="drag.js"></script>
+        <script src="todo.js"></script>
+        <script src="utils.js"></script>
+        <script src="star-background.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", async () => {
+                // Check authentication
+                const token = localStorage.getItem('token');
+                const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+                if (!token || !user.email) {
+                    // No auth, redirect to login
+                    window.location.href = '/auth.html';
+                    return;
+                }
+
+                // Show user email
+                document.getElementById('user-email').textContent = user.email;
+
+                // Logout handler
+                document.getElementById('logout-btn').addEventListener('click', () => {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    window.location.href = '/auth.html';
+                });
+
+                // Initialize app
+                initializeStarBackground();
+                await loadTasks();
+                
+                // Hide loading overlay
+                document.getElementById('loading').classList.add('hidden');
+            });
+        </script>
+    </body>
+</html>

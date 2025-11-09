@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chamomile - Login</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍵️</text></svg>" />
+</head>
+<body>
+    <!-- Star Background -->
+    <div id="star-background" class="star-background"></div>
+
+    <!-- Auth Container -->
+    <div class="auth-container">
+        <div class="auth-box">
+            <h1>🍵 Chamomile</h1>
+            <p class="subtitle">Your peaceful kanban board</p>
+
+            <!-- Tabs -->
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+
+            <!-- Messages -->
+            <div id="message-container"></div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form active">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required />
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required />
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signup-form" class="auth-form">
+                <input type="hidden" id="signup-timestamp" />
+                
+                <!-- Honeypot field (hidden from humans) -->
+                <div class="form-group honeypot">
+                    <label for="signup-nickname">Nickname (leave blank)</label>
+                    <input type="text" id="signup-nickname" tabindex="-1" autocomplete="off" />
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required />
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password (min 8 characters)</label>
+                    <input type="password" id="signup-password" required minlength="8" />
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="star-background.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeStarBackground();
+        });
+    </script>
+</body>
+</html>
