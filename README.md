@@ -1,8 +1,10 @@
 # 🍵 Chamomile
 
-A step up on my previous project with user authentication, persistent database and type safety. Built with TypeScript, Express, SQLite, and vanilla JavaScript.
+A step up on my previous kanban board project with user authentication, persistent database and type safety. Built with TypeScript, Express and SQLite.
 
-![Chamomile Screenshot](https://via.placeholder.com/800x400.png?text=Add+Your+Screenshot+Here)
+![Chamomile Login](outputs/login-screen.png)
+
+![Chamomile App](outputs/main-page.png)
 
 ## ✨ Features
 
@@ -10,7 +12,7 @@ A step up on my previous project with user authentication, persistent database a
 - 🤖 **Anti-Bot Protection** - Honeypot fields and timing analysis
 - 💾 **Persistent Storage** - SQLite database with automatic backups
 - 🚀 **Type-Safe** - Full TypeScript backend with compile-time safety
-- 📱 **Responsive** - Works on desktop, tablet, and mobile
+- 📱 **Responsive** - Works on desktop, tablet, and mobile, with smooth drag-and-drop
 
 ## 🏗️ Tech Stack
 

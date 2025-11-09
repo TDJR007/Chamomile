@@ -534,7 +534,7 @@ body {
 	display: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1400px) {
 	.user-email {
 		display: none;
 		/* Hide email, show only logout button */
