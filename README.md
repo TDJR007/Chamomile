@@ -116,26 +116,50 @@ chamomile/
 │   ├── star-background.js
 │   └── styles.css
 │
-├── src/                 # TypeScript backend
-│   ├── types/           # Type definitions
-│   ├── middleware/      # Auth & security middleware
-│   ├── routes/          # API routes
-│   ├── utils/           # Utilities (JWT, bcrypt, validation)
-│   ├── db/              # Database layer
-│   ├── app.ts           # Express app setup
-│   └── server.ts        # Entry point
+├── src/                             # TypeScript backend source
+│   ├── types/
+│   │   └── index.ts                 # TypeScript type definitions (User, Task, etc.)
+│   │
+│   ├── middleware/
+│   │   ├── authMiddleware.ts        # JWT token verification middleware
+│   │   ├── tightSignupGuard.ts      # Anti-bot protection (honeypot + timing)
+│   │   └── errorHandler.ts          # Global error handling middleware
+│   │
+│   ├── routes/
+│   │   ├── authRoutes.ts            # Auth endpoints (register, login)
+│   │   ├── todoRoutes.ts            # Task CRUD endpoints (get, create, update, delete)
+│   │   └── index.ts                 # Route aggregator (combines all routes)
+│   │
+│   ├── utils/
+│   │   ├── jwt.ts                   # JWT token generation and verification
+│   │   ├── password.ts              # Password hashing and comparison (bcrypt)
+│   │   ├── rateLimiter.ts           # Rate limiting configurations
+│   │   └── validation.ts            # Input validation and sanitization
+│   │
+│   ├── db/
+│   │   ├── database.ts              # SQLite database connection and operations
+│   │   └── schemaInit.ts            # Database schema initialization script
+│   │
+│   ├── app.ts                       # Express app configuration and middleware setup
+│   └── server.ts                    # Server entry point (starts Express server)
 │
-├── data/                # SQLite database
-│   └── chamomile.db
+├── data/
+│   └── chamomile.db                 # SQLite database file (created on first run)
 │
-├── dist/                # Compiled JavaScript (after build)
+├── dist/                            # Compiled JavaScript output (after npm run build)
 │
-├── .env                 # Environment variables (not in git)
-├── .env.sample          # Template for .env
-└── package.json         # Node.js project’s metadata, scripts, and dependencies.
-└── package-lock.json    # Locks the exact versions of installed dependencies to ensure reproducibility
-└── tsconfig.json
-└── chamomile.rest       # Contains HTTP request definitions used for testing
+├── node_modules/                    # Dependencies (not committed to git)
+│
+├── .env                             # Environment variables (NOT in git)
+├── .env.sample                      # Environment variables template
+├── .gitignore                       # Files to exclude from git
+├── chamomile.rest                   # API testing file (REST Client for VS Code)
+├── nixpacks.toml                    # Railway build configuration
+├── package.json                     # Node.js dependencies and scripts
+├── package-lock.json                # Locked dependency versions
+├── railway.json                     # Railway deployment configuration
+├── README.md                        # Project documentation
+└── tsconfig.json                    # TypeScript compiler configuration
 ```
 
 ## 🔒 Security Features
