@@ -6,6 +6,8 @@ A step up on my previous kanban board project with user authentication, persiste
 
 ![Chamomile App](outputs/main-page.jpeg)
 
+Railway Link: `chamomile-production.up.railway.app/`
+
 ## ✨ Features
 
 - 🔐 **Secure Authentication** - JWT-based auth with bcrypt password hashing
